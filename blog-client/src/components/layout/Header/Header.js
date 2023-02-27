@@ -2,19 +2,19 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Nav } from '../Nav';
 import { useOnClickOutside, useUserScrolledAfterEl } from '../../../hooks';
+import { useOnClickOutside, useScrolledAfterEl } from '../../../hooks';
 import { MenuIcon, CloseIcon } from '../../../Icons';
 import devFocusImg from '../../../img/undraw-dev-focus.svg';
 
 const Header = ({
-        headerNode,
-        scrolledAfterHeader,
-        navNode,
-        navOpen,
-        setNavOpen
-    }) => {
+    headerNode,
+    scrolledAfterHeader,
+    navNode,
+    navOpen,
+    setNavOpen
+}) => {
 
     const isExpanded = navOpen ? true : false;
-
     return (
         <header ref={headerNode} className="h-full">
             <div ref={navNode}>
@@ -30,14 +30,14 @@ const Header = ({
                         ) : (
                             <MenuIcon
                                 className={`w-6 h-6 fill-current ${scrolledAfterHeader ? 'text-gray-900' : 'text-gray-100'
-                                    }`}
-                            />
-                        )}
+                  scrolledAfterHeader ? 'text-black' : 'text-white'
+                }`}
+              />
+            )}
                     </button>
                 </div>
                 <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
             </div>
-
             <div className="h-full flex flex-col justify-center items-center px-2">
                 <img
                     className="w-11/12 max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl"
@@ -64,7 +64,7 @@ function HeaderContainer() {
     const navNode = useRef();
     useOnClickOutside(navNode, () => setNavOpen(false));
     const headerNode = useRef();
-    const scrolledAfterHeader = useUserScrolledAfterEl(headerNode);
+    const scrolledAfterHeader = useScrolledAfterEl(headerNode);
 
     return (
         <Header
@@ -76,5 +76,4 @@ function HeaderContainer() {
         />
     );
 }
-
 export default HeaderContainer;

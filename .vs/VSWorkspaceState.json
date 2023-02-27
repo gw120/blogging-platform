@@ -2,11 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\blog-client",
-    "\\blog-client\\public",
     "\\blog-client\\src",
-    "\\blog-client\\src\\components",
-    "\\blog-client\\src\\components\\layout"
+    "\\blog-client\\src\\components\\layout",
+    "\\blog-client\\src\\components\\layout\\Menu"
   ],
-  "SelectedNode": "\\blog-client\\tailwind.config.js",
+  "SelectedNode": "\\blog-client\\src\\hooks.js",
   "PreviewInSolutionExplorer": false
 }
