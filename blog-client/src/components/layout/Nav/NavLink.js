@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const NavLink = ({ tabIndex, children, ...props }) => (
     <a
         {...props}
-        className="text-3xl py-8 flex justify-center items-center"
+        className="text-2xl py-8 flex items-center"
         tabIndex={tabIndex}
     >
         {children}
