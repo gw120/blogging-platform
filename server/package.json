@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mateuszwszola/blogging-platform.git"
+    "url": ""
   },
-  "author": "Mateusz Wszola",
+  "author": "Gregoryann",
   "license": "MIT",
   "bugs": {
     "url": ""
@@ -28,7 +28,8 @@
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.11",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "validator": "^12.2.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

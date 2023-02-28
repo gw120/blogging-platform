@@ -4,26 +4,30 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const connectDb = require('./config/db');
-const middlewares = require('./middlewares');
+const db = require('./config/db');
+const errorMiddlewares = require('./middleware/error');
 
 const app = express();
 
-connectDb();
+// Connect to the db
+db();
 
 app.use(morgan('common'));
 app.use(helmet());
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
 }));
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.json({ message: 'Hello world!' });
 });
-app.use('/api', require('./api'));
+
+app.use('/api', require('./routes'));
+
 // 404 handler
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
+app.use(errorMiddlewares.notFound);
+
+app.use(errorMiddlewares.errorHandler);
+
 module.exports = app;
