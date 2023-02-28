@@ -1,11 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\blog-client",
-    "\\blog-client\\src",
+    "\\api",
+    "\\blog-client\\src\\components",
     "\\blog-client\\src\\components\\layout",
-    "\\blog-client\\src\\components\\layout\\Menu"
+    "\\blog-client\\src\\components\\layout\\Menu",
+    "\\blog-client\\src\\components\\layout\\Nav",
+    "\\blog-client\\src\\components\\pages",
+    "\\server",
+    "\\server\\src"
   ],
-  "SelectedNode": "\\blog-client\\src\\hooks.js",
+  "SelectedNode": "\\server\\src\\middlewares.js",
   "PreviewInSolutionExplorer": false
 }
