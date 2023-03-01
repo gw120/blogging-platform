@@ -3,17 +3,25 @@ import { GithubIcon } from '../../../Icons';
 
 const Footer = () => {
     return (
-        <svg
-            {...props}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-        >
-            <path
-                className="heroicon-ui"
-                d="M7 10V7a5 5 0 1 1 10 0v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h2zm2 0h6V7a3 3 0 0 0-6 0v3zm-4 2v8h14v-8H5zm7 2a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"
-            />
-        </svg>
+        <div className="bg-gray-900 text-gray-100 py-12 px-6 border-t-2 border-gray-400">
+            <div className="flex flex-col items-center">
+                <p className="text-lg uppercase tracking-widest font-normal text-center">
+                    Mateusz Wszola
+                </p>
+                <div className="flex mt-2">
+                    <span className="text-gray-600">Source code on</span>
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-200 flex"
+                        href="https://github.com/mateuszwszola/blogging-platform"
+                    >
+                        <span className="ml-2">Github</span>
+                        <GithubIcon className="w-6 h-6 fill-current mx-2" />
+                    </a>
+                </div>
+            </div>
+        </div>
     );
 };
+export default Footer;

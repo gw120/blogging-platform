@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EnvelopeIcon, LockOpenIcon, KeyIcon } from '../../Icons';
-
 function Login() {
     return (
         <main className="w-full h-screen bg-gray-900 font-sans">
@@ -32,7 +31,6 @@ function Login() {
                             <KeyIcon className="w-4 h-4 fill-current" />
                         </div>
                     </label>
-
                     <div className="flex flex-col sm:flex-row sm:justify-between px-2 py-2 sm:my-1">
                         <label className="flex items-center py-1 sm:py-0">
                             <input
@@ -55,8 +53,9 @@ function Login() {
                             value="Login"
                         />
                     </div>
+
                     <div className="mt-2 sm:mt-4 text-center">
-                        <p className="text-gray-100">Do you have an account?</p>
+                        <p className="text-gray-100">You do not have an account?</p>
                         <Link to="/register" className="text-red-500 px-4 py-2">
                             Register
                         </Link>
