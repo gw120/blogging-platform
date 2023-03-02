@@ -5,12 +5,12 @@
     "\\frontend\\src",
     "\\frontend\\src\\components",
     "\\frontend\\src\\components\\layout",
-    "\\frontend\\src\\components\\pages",
+    "\\frontend\\src\\components\\layout\\Footer",
+    "\\frontend\\src\\Icons",
     "\\server",
     "\\server\\src",
-    "\\server\\src\\api",
     "\\server\\src\\validations"
   ],
-  "SelectedNode": "\\frontend\\src\\components\\layout\\About.js",
+  "SelectedNode": "\\frontend\\src\\components\\pages\\Login.js",
   "PreviewInSolutionExplorer": false
 }
