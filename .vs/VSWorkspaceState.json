@@ -4,13 +4,12 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\components",
-    "\\frontend\\src\\components\\layout",
     "\\frontend\\src\\components\\layout\\Footer",
-    "\\frontend\\src\\Icons",
+    "\\frontend\\src\\components\\pages",
     "\\server",
     "\\server\\src",
     "\\server\\src\\validations"
   ],
-  "SelectedNode": "\\frontend\\src\\components\\pages\\Login.js",
+  "SelectedNode": "\\frontend\\src\\components\\pages\\index.js",
   "PreviewInSolutionExplorer": false
 }
