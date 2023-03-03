@@ -32,18 +32,14 @@ export function useScrolledAfterVHeight(offset) {
             document.removeEventListener('scroll', handleScroll);
         };
     }, [offset]);
-
     return scrolledAfterVHeight;
 }
-
 export function useWindowWidth() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
     useEffect(() => {
         function handleResize() {
             setWindowWidth(window.innerWidth);
         }
-
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -51,4 +47,17 @@ export function useWindowWidth() {
     }, []);
 
     return windowWidth;
+}
+
+export function useInput(initialValue = '') {
+    const [value, setValue] = useState(initialValue);
+    function handleValueChange(e) {
+        setValue(e.target.value);
+    }
+
+    function handleReset() {
+        setValue(initialValue);
+    }
+
+    return [value, handleValueChange, handleReset];
 }

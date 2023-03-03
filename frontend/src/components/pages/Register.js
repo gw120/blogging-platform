@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LockClosedIcon, UserIcon, EnvelopeIcon, KeyIcon } from '../../Icons';
-
 function Register() {
     return (
         <main className="w-full h-screen bg-gray-900 font-sans">
@@ -57,7 +56,7 @@ function Register() {
 
                     <div className="w-11/12 mx-auto mt-3 sm:mt-4">
                         <input
-                            className="w-full rounded-full py-2 px-4 uppercase bg-red-500 hover:bg-red-400 text-gray-900 font-semibold cursor-pointer"
+                            className="w-full rounded-full py-2 px-4 uppercase bg-red-500 hover:bg-red-400 text-gray-900 font-semibold cursor-pointer focus:outline-none focus:shadow-outline"
                             type="submit"
                             value="Sign Up"
                         />
