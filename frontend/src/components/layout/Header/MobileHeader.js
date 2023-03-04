@@ -5,7 +5,6 @@ import { MobileNav } from '../Nav';
 
 const MobileHeader = ({ navNode, navOpen, setNavOpen }) => {
     const isExpanded = navOpen ? true : false;
-
     return (
         <header>
             <div ref={navNode}>
@@ -17,9 +16,10 @@ const MobileHeader = ({ navNode, navOpen, setNavOpen }) => {
                         aria-expanded={isExpanded}
                     >
                         {navOpen ? (
-                            <CloseIcon className="w-6 h-6 fill-current text-gray-700" />
+
+                            <CloseIcon className="w-6 h-6 fill-current text-gray-500" />
                         ) : (
-                            <MenuIcon className="w-6 h-6 fill-current text-gray-700" />
+                            <MenuIcon className="w-6 h-6 fill-current text-gray-500" />
                         )}
                     </button>
                 </div>
@@ -33,5 +33,4 @@ MobileHeader.propTypes = {
     navOpen: PropTypes.bool.isRequired,
     setNavOpen: PropTypes.func.isRequired
 };
-
 export default MobileHeader;
