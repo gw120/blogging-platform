@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MenuIcon, CloseIcon } from '../../../Icons';
+import { MenuIcon, CloseIcon } from '../../../icons';
 import { MobileNav } from '../Nav';
 
 const MobileHeader = ({ navNode, navOpen, setNavOpen }) => {
@@ -16,7 +16,6 @@ const MobileHeader = ({ navNode, navOpen, setNavOpen }) => {
                         aria-expanded={isExpanded}
                     >
                         {navOpen ? (
-
                             <CloseIcon className="w-6 h-6 fill-current text-gray-500" />
                         ) : (
                             <MenuIcon className="w-6 h-6 fill-current text-gray-500" />
