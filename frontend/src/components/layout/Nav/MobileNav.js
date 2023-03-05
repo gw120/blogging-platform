@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import MobileNavLink from './MobileNavLink';
+import { useAuth } from '../../../context/AuthContext';
 
 const MobileNav = ({ navOpen, setNavOpen }) => {
     const isHidden = navOpen ? true : false;
     const tabIndex = isHidden ? 0 : 1;
+    const auth = useAuth();
 
     const navClassnames = clsx(
         'flex flex-col justify-center items-center fixed top-0 left-0 h-screen w-full bg-gray-900 text-gray-400 transform md:max-w-sm z-10',
@@ -28,13 +30,26 @@ const MobileNav = ({ navOpen, setNavOpen }) => {
                 >
                     Explore
                 </MobileNavLink>
-                <MobileNavLink
-                    onClick={() => setNavOpen(false)}
-                    to="/login"
-                    tabIndex={tabIndex}
-                >
-                    Login
-                </MobileNavLink>
+                {auth.data.user ? (
+                    <MobileNavLink
+                        onClick={() => {
+                            setNavOpen(false);
+                            auth.logout();
+                        }}
+                        to="/login"
+                        tabIndex={tabIndex}
+                    >
+                        Logout
+                    </MobileNavLink>
+                ) : (
+                    <MobileNavLink
+                        onClick={() => setNavOpen(false)}
+                        to="/login"
+                        tabIndex={tabIndex}
+                    >
+                        Login
+                    </MobileNavLink>
+                )}
             </div>
         </nav>
     );

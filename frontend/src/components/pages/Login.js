@@ -1,10 +1,9 @@
-import { useAuth } from '../../import React, { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { EnvelopeIcon, LockOpenIcon, KeyIcon } from '../../icons';
 import { useForm } from '../../hooks';
 import { useAuth } from '../../context/AuthContext';
-
 function Login({
     email,
     password,
@@ -99,7 +98,6 @@ function LoginContainer() {
     const {
         handleChange,
         handleSubmit,
-        handleReset,
         values: { email, password }
     } = useForm(
         {
@@ -110,14 +108,17 @@ function LoginContainer() {
     );
     const auth = useAuth();
     const [errors, setErrors] = useState([]);
-
     function createError(field, msg) {
         return { field, msg };
     }
 
     async function login() {
         const data = { email, password };
-        await auth.login(data);
+        try {
+            await auth.login(data);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     return (

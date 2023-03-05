@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useAsync } from 'react-async';
 import * as auth from '../api/auth';
-
 const AuthContext = React.createContext();
 
 async function getUserData() {
+
     const user = await auth.getUser();
     if (!user) {
         return { user: null };
     }
     return { user };
 }
-
 function AuthProvider(props) {
     const [firstAttemptFinished, setFirstAttemptFinished] = useState(false);
     const {
@@ -24,13 +23,11 @@ function AuthProvider(props) {
     } = useAsync({
         promiseFn: getUserData
     });
-
     React.useLayoutEffect(() => {
         if (isSeattled) {
             setFirstAttemptFinished(true);
         }
     }, [isSeattled]);
-
     if (!firstAttemptFinished) {
         if (isPending) {
             return <div>Loading...</div>;
@@ -44,14 +41,25 @@ function AuthProvider(props) {
             );
         }
     }
-    const login = formData => {
-        auth.login(formData).then(reload);
+
+    const login = async formData => {
+        try {
+            await auth.login(formData);
+            reload();
+        } catch (err) {
+            return Promise.reject(err);
+        }
     };
     const register = formData => {
         auth.register(formData).then(reload);
     };
-    const logout = () => {
-        auth.logout().then(reload);
+    const logout = async () => {
+        try {
+            await auth.logout();
+            reload();
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -61,7 +69,6 @@ function AuthProvider(props) {
         />
     );
 }
-
 function useAuth() {
     const context = React.useContext(AuthContext);
     if (context === undefined) {
@@ -69,5 +76,4 @@ function useAuth() {
     }
     return context;
 }
-
 export { AuthProvider, useAuth };
