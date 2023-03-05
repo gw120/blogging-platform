@@ -1,22 +1,25 @@
-async function api(endpoint, method = 'GET', body = {}) {
-    const token = window.localStorage.getItem('__token__');
-    const headers = { 'content-type': 'application/json' };
-    if (token) {
-        headers['x-auth-token'] = token;
-    }
-    const config = {
-        method,
-        headers
-    };
-    if (body) {
-        config.body = JSON.stringify(body);
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PageContent from './components/layout/PageContent';
+import { NotFound, Explore } from './components/pages';
+import { Header } from './components/layout/Header';
+
+function AuthenticatedApp() {
+        return (
+            <Router>
+                <PageContent>
+                    <Header />
+                    <Switch>
+                        <Route path="/explore">
+                            <Explore />
+                        </Route>
+                        <Route>
+                            <NotFound />
+                        </Route>
+                    </Switch>
+                </PageContent>
+            </Router>
+        );
     }
 
-    const res = await window.fetch(
-        `${process.env.API_BASE_URL}/${endpoint}`,
-        config
-    );
-    return await res.json();
-}
-
-export default api;
+    export default AuthenticatedApp;

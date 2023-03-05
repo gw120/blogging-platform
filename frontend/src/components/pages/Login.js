@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useAuth } from '../../import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { EnvelopeIcon, LockOpenIcon, KeyIcon } from '../../Icons';
+import { EnvelopeIcon, LockOpenIcon, KeyIcon } from '../../icons';
 import { useForm } from '../../hooks';
-import { postData } from '../../api/API';
+import { useAuth } from '../../context/AuthContext';
 
 function Login({
     email,
@@ -95,7 +95,6 @@ Login.propTypes = {
     handleChange: PropTypes.func.isRequired,
     errors: PropTypes.array.isRequired
 };
-
 function LoginContainer() {
     const {
         handleChange,
@@ -109,22 +108,16 @@ function LoginContainer() {
         },
         login
     );
+    const auth = useAuth();
     const [errors, setErrors] = useState([]);
 
     function createError(field, msg) {
         return { field, msg };
     }
+
     async function login() {
         const data = { email, password };
-
-        try {
-            const res = await postData('/users/login', data);
-            console.log(res);
-            handleReset();
-        } catch (error) {
-            console.log('error catched', error);
-            setErrors([...errors, error]);
-        }
+        await auth.login(data);
     }
 
     return (
