@@ -1,25 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PageContent from './components/layout/PageContent';
-import { NotFound, Explore } from './components/pages';
-import { Header } from './components/layout/Header';
+const API_BASE_URL = 'http://localhost:3001/api';
 
-function AuthenticatedApp() {
-        return (
-            <Router>
-                <PageContent>
-                    <Header />
-                    <Switch>
-                        <Route path="/explore">
-                            <Explore />
-                        </Route>
-                        <Route>
-                            <NotFound />
-                        </Route>
-                    </Switch>
-                </PageContent>
-            </Router>
-        );
+async function api(endpoint, method = 'GET', { body, ...customConfig } = {}) {
+    const token = window.localStorage.getItem('__token__');
+    const headers = { 'content-type': 'application/json' };
+    if (token) {
+        headers['x-auth-token'] = token;
+    }
+    const config = {
+        method,
+        headers,
+        ...customConfig
+    };
+    if (body) {
+        config.body = JSON.stringify(body);
     }
 
-    export default AuthenticatedApp;
+    const res = await window.fetch(`${API_BASE_URL}/${endpoint}`, config);
+    const data = await res.json();
+
+    if (!res.ok) {
+        return Promise.reject(data);
+    }
+    return Promise.resolve(data);
+}
+export default api;

@@ -4,13 +4,14 @@ import * as auth from '../api/auth';
 const AuthContext = React.createContext();
 
 async function getUserData() {
-
     const user = await auth.getUser();
+
     if (!user) {
-        return { user: null };
+        return Promise.resolve({ user: null });
     }
-    return { user };
+    return Promise.resolve({ user });
 }
+
 function AuthProvider(props) {
     const [firstAttemptFinished, setFirstAttemptFinished] = useState(false);
     const {
@@ -41,7 +42,6 @@ function AuthProvider(props) {
             );
         }
     }
-
     const login = async formData => {
         try {
             await auth.login(formData);
@@ -50,9 +50,11 @@ function AuthProvider(props) {
             return Promise.reject(err);
         }
     };
-    const register = formData => {
+
+    const register = async formData => {
         auth.register(formData).then(reload);
     };
+
     const logout = async () => {
         try {
             await auth.logout();
@@ -61,7 +63,6 @@ function AuthProvider(props) {
             console.log(err);
         }
     };
-
     return (
         <AuthContext.Provider
             value={{ data, login, register, logout }}

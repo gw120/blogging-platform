@@ -10,7 +10,7 @@ const MobileNav = ({ navOpen, setNavOpen }) => {
     const auth = useAuth();
 
     const navClassnames = clsx(
-        'flex flex-col justify-center items-center fixed top-0 left-0 h-screen w-full bg-gray-900 text-gray-400 transform md:max-w-sm z-10',
+        'flex flex-col justify-center items-center fixed top-0 left-0 h-screen w-full bg-gray-900 text-gray-400 transition-ease md:max-w-sm z-10',
         { 'translate-x-0': navOpen, '-translate-x-full': !navOpen }
     );
     return (

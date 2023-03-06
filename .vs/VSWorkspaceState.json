@@ -3,16 +3,14 @@
     "",
     "\\frontend",
     "\\frontend\\src",
+    "\\frontend\\src\\components",
     "\\frontend\\src\\components\\layout",
-    "\\frontend\\src\\components\\layout\\Footer",
-    "\\frontend\\src\\components\\layout\\Header",
-    "\\frontend\\src\\components\\layout\\Nav",
     "\\frontend\\src\\components\\pages",
-    "\\frontend\\src\\utils",
+    "\\frontend\\src\\context",
     "\\server",
     "\\server\\src",
     "\\server\\src\\validations"
   ],
-  "SelectedNode": "\\frontend\\src\\utils\\setAuthToken.js",
+  "SelectedNode": "\\frontend\\src\\context\\AuthContext.js",
   "PreviewInSolutionExplorer": false
 }

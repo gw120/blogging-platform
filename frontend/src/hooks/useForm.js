@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useForm(initialValues = {}, callback) {
+export function useForm(initialValues = {}, callback, validate) {
     const [values, setValues] = useState(initialValues);
 
     function handleSubmit(event) {
@@ -9,7 +9,6 @@ export function useForm(initialValues = {}, callback) {
         }
         callback();
     }
-
     function handleChange(event) {
         event.persist();
         setValues(values => ({
@@ -17,11 +16,9 @@ export function useForm(initialValues = {}, callback) {
             [event.target.name]: event.target.value
         }));
     }
-
     function handleReset() {
         setValues(initialValues);
     }
-
     return {
         handleChange,
         handleSubmit,
