@@ -12,7 +12,6 @@ export function useForm(initialValues = {}, callback, validate) {
     }, [errors]);
 
     function handleSubmit(event) {
-        console.log('submit');
         if (event) event.preventDefault();
         if (validate) {
             setErrors(validate(values));

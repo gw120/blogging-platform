@@ -21,11 +21,9 @@ function Login({
                 <div className="text-red-500">
                     <LockOpenIcon className="w-40 h-40 fill-current" />
                 </div>
-
                 {errors.message && (
                     <p className="text-red-500 text-sm">{errors.message}</p>
                 )}
-
                 <form onSubmit={handleSubmit} className="flex flex-col w-full mt-2">
                     <InputGroup
                         isError={
@@ -118,12 +116,13 @@ function LoginContainer() {
                 setErrors(err.errors);
             } else {
                 setErrors({
-                    message: 'There is a problem with the server. Try again later.'
+                    message:
+                        err.message ||
+                        'There is a problem with the server. Try again later.'
                 });
             }
         }
     }
-
     return (
         <Login
             handleSubmit={handleSubmit}
