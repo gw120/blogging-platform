@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { useAsync } from 'react-async';
 import * as auth from '../api/auth';
 const AuthContext = React.createContext();
-
 async function getUserData() {
     const user = await auth.getUser();
-
     if (!user) {
         return Promise.resolve({ user: null });
     }
     return Promise.resolve({ user });
 }
-
 function AuthProvider(props) {
     const [firstAttemptFinished, setFirstAttemptFinished] = useState(false);
     const {
@@ -42,17 +39,27 @@ function AuthProvider(props) {
             );
         }
     }
+
     const login = async formData => {
+        // auth.login(formData).then(reload);
         try {
             await auth.login(formData);
             reload();
         } catch (err) {
+            console.log(err);
             return Promise.reject(err);
         }
     };
 
     const register = async formData => {
-        auth.register(formData).then(reload);
+        // auth.register(formData).then(reload);
+        try {
+            await auth.register(formData);
+            reload();
+        } catch (err) {
+            console.log(err);
+            return Promise.reject(err);
+        }
     };
 
     const logout = async () => {

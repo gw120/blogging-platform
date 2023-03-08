@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
 const InputField = ({
     isError,
     value,
@@ -13,7 +12,7 @@ const InputField = ({
     <input
         className={clsx(
             'bg-gray-100 w-full rounded py-2 px-4 outline-none focus:shadow-outline',
-            isError && 'border-2 border-red-700',
+            isError && 'border-2 border-red-500',
             classnames
         )}
         type={type}
@@ -22,11 +21,9 @@ const InputField = ({
         {...props}
     />
 );
-
 InputField.defaultProps = {
     type: 'text'
 };
-
 InputField.propTypes = {
     isError: PropTypes.bool,
     value: PropTypes.string.isRequired,
@@ -36,5 +33,4 @@ InputField.propTypes = {
     placeholder: PropTypes.string,
     classnames: PropTypes.string
 };
-
 export default InputField;
