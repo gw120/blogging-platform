@@ -7,16 +7,15 @@ import { useUser } from '../../../context/UserContext';
 const DesktopHeader = ({ headerScrolledAfterVHeight }) => {
     const { pathname } = useLocation();
     const user = useUser();
-
     const headerBgColor =
         pathname === '/' && !user && !headerScrolledAfterVHeight
             ? 'transparent'
-            : 'bg-gray-900';
-    return (
-        <header className={`fixed w-full z-10 ${headerBgColor}`}>
-            <DesktopNav />
-        </header>
-    );
+            : 'bg-gray-800';
+return (
+    <header className={`fixed w-full z-10 ${headerBgColor}`}>
+        <DesktopNav />
+    </header>
+);
 };
 DesktopHeader.propTypes = {
     headerScrolledAfterVHeight: PropTypes.bool.isRequired

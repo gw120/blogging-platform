@@ -4,15 +4,13 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\components",
-    "\\frontend\\src\\components\\layout",
-    "\\frontend\\src\\components\\layout\\Input",
     "\\frontend\\src\\components\\pages",
+    "\\frontend\\src\\components\\pages\\auth",
     "\\frontend\\src\\hooks",
-    "\\frontend\\src\\utils",
     "\\server",
     "\\server\\src",
-    "\\server\\src\\controllers"
+    "\\server\\src\\validations"
   ],
-  "SelectedNode": "\\frontend\\src\\utils\\RegisterFormValidationRules.js",
+  "SelectedNode": "\\frontend\\src\\components\\pages\\auth",
   "PreviewInSolutionExplorer": false
 }
