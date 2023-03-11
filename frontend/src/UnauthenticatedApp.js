@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PageContent from './components/layout/PageContent';
+
 import {
     Homepage,
     Login,
@@ -15,8 +16,8 @@ import { Footer } from './components/layout/Footer';
 function UnauthenticatedApp() {
     return (
         <Router>
+            <Header />
             <PageContent>
-                <Header />
                 <Switch>
                     <Route exact path="/">
                         <Homepage />

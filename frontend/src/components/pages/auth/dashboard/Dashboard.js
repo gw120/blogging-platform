@@ -16,34 +16,32 @@ function Dashboard({
     let { path } = useRouteMatch();
 
     return (
-        <main className="md:pt-16 flex-auto flex-shrink-0 h-screen">
-            <div className="flex h-full">
-                <div className="w-1/5 bg-gray-200 px-2 py-4">
-                    <Sidebar />
-                </div>
-
-                <div className="w-4/5 bg-gray-300 py-2 px-4">
-                    <Switch>
-                        <Route exact path={path}>
-                            <h3 className="text-center text-3xl leading-loose mt-6">
-                                Please select a blog
-                            </h3>
-                        </Route>
-                        <Route path={`${path}/create-blog`}>
-                            <CreateBlog />
-                        </Route>
-                        <Route path={`${path}/:blogName`}>
-                            <AddBlogPost
-                                title={title}
-                                body={body}
-                                handleTitleChange={handleTitleChange}
-                                handleBodyChange={handleBodyChange}
-                            />
-                        </Route>
-                    </Switch>
-                </div>
+        <div className="flex flex-auto flex-shrink-0 md:pt-16">
+            <div className="w-1/5 bg-gray-200 px-2 py-4">
+                <Sidebar />
             </div>
-        </main>
+            <div className="w-4/5 bg-gray-300 py-2 px-4">
+                <Switch>
+                    <Route exact path={path}>
+                        <h3 className="text-center text-3xl leading-loose mt-6">
+                            Please select a blog
+                        </h3>
+                    </Route>
+                    <Route path={`${path}/create-blog`}>
+                        <CreateBlog />
+                    </Route>
+                    <Route path={`${path}/:blogName`}>
+                        <AddBlogPost
+                            title={title}
+                            body={body}
+                            handleTitleChange={handleTitleChange}
+                            handleBodyChange={handleBodyChange}
+                        />
+                    </Route>
+                </Switch>
+            </div>
+
+        </div>
     );
 }
 
@@ -53,11 +51,9 @@ Dashboard.propTypes = {
     handleTitleChange: PropTypes.func.isRequired,
     handleBodyChange: PropTypes.func.isRequired
 };
-
 function DashboardContainer(props) {
     const [title, handleTitleChange] = useInput('');
     const [body, handleBodyChange] = useInput('');
-
     return (
         <Dashboard
             title={title}
@@ -67,5 +63,4 @@ function DashboardContainer(props) {
         />
     );
 }
-
 export default DashboardContainer;
