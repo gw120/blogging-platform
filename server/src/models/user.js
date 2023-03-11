@@ -2,41 +2,51 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+
 const requiredString = {
     type: String,
     required: true,
 };
-const userSchema = new mongoose.Schema({
-    name: {
-        ...requiredString,
-        trim: true,
-        minLength: 2,
-        maxLength: 20,
-    },
-    email: {
-        ...requiredString,
-        unique: true,
-        lowercase: true,
-        validate: (value) => {
-            if (!validator.isEmail(value)) {
-                throw new Error('Invalid Email Address');
-            }
-        },
-    },
-    password: {
-        ...requiredString,
-        minLength: 7,
-    },
-    /*
-      Having a list of tokens enables a user to be logged in on different devices.
-      Every time a user registers or logs in, the token is created and added to this list
-    */
-    tokens: [{
-        token: {
+
+const userSchema = new mongoose.Schema(
+    {
+        name: {
             ...requiredString,
+            trim: true,
+            minLength: 2,
+            maxLength: 20,
         },
-    }],
-}, { timestamps: true });
+        email: {
+            ...requiredString,
+            unique: true,
+            lowercase: true,
+            validate: (value) => {
+                if (!validator.isEmail(value)) {
+                    throw new Error('Invalid Email Address');
+                }
+            },
+        },
+        password: {
+            ...requiredString,
+            minLength: 7,
+        },
+
+/*
+Having a list of tokens enables a user to be logged in on different devices.
+Every time a user registers or logs in, the token is created and added to this list
+*/
+
+        tokens: [
+            {
+                token: {
+                    ...requiredString,
+                },
+            },
+        ],
+    },
+    { timestamps: true },
+);
+
 userSchema.pre('save', async function (next) {
     const user = this;
     // Hash the password only if it's modified

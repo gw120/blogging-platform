@@ -9,8 +9,10 @@ const InputGroup = ({
     handleChange,
     icon: Icon,
     name,
+    classnames,
     ...props
 }) => {
+
     return (
         <div className="my-2 sm:my-3">
             <label className="relative">
@@ -20,7 +22,7 @@ const InputGroup = ({
                     handleChange={handleChange}
                     name={name}
                     {...props}
-                    classnames={Icon ? 'pl-10' : ''}
+                    classnames={`${classnames}${Icon ? 'pl-10' : ''}`}
                 />
                 {Icon && (
                     <div className="absolute top-0 left-0 bottom-0 flex items-center p-2 pl-3 text-gray-400">
@@ -32,18 +34,18 @@ const InputGroup = ({
         </div>
     );
 };
-
 InputGroup.defaultProps = {
     isError: false,
     errors: {}
 };
-
 InputGroup.propTypes = {
     isError: PropTypes.bool,
     errors: PropTypes.object,
     value: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    icon: PropTypes.elementType
+    icon: PropTypes.elementType,
+    classnames: PropTypes.string
 };
+
 export default InputGroup;

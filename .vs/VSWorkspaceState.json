@@ -4,13 +4,12 @@
     "\\frontend",
     "\\frontend\\src",
     "\\frontend\\src\\components",
+    "\\frontend\\src\\components\\layout",
+    "\\frontend\\src\\components\\layout\\Footer",
+    "\\frontend\\src\\components\\layout\\Header",
+    "\\frontend\\src\\components\\layout\\Input",
     "\\frontend\\src\\components\\pages",
-    "\\frontend\\src\\components\\pages\\auth",
-    "\\frontend\\src\\hooks",
-    "\\server",
-    "\\server\\src",
-    "\\server\\src\\validations"
+    "\\frontend\\src\\hooks"
   ],
-  "SelectedNode": "\\frontend\\src\\components\\pages\\auth",
   "PreviewInSolutionExplorer": false
 }
