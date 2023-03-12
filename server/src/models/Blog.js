@@ -1,36 +1,44 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
-
 const requiredString = {
     type: String,
     required: true,
 };
 
 const blogSchema = new mongoose.Schema({
-    author: {
-        type: mongoose.ObjectId,
-        ref: 'User',
-    },
-    name: {
-        ...requiredString,
-        unique: true,
-        minLength: 4,
-        maxLength: 40,
-    },
-    slug: {
-        type: String,
-        lowercase: true,
-        unique: true,
-    },
-    tags: {
-        type: String,
-    },
-}, { timestamps: true });
+        user: {
+            type: mongoose.ObjectId,
+            ref: 'User',
+        },
+        name: {
+            ...requiredString,
+            unique: true,
+            minLength: 4,
+            maxLength: 40,
+            lowercase: true,
+        },
+        description: {
+            type: String,
+            minLength: 7,
+            maxLength: 80,
+        },
+        slug: {
+            type: String,
+            lowercase: true,
+            unique: true,
+        },
+        tags: {
+            type: String,
+        },
+    }, { timestamps: true });
 
-blogSchema.pre('save', async (next) => {
-    // check if name is unique
-});
+    blogSchema.pre('validate', function (next) {
+        if (!this.slug) {
+            this.slug = slugify(this.name);
+        }
 
-const Blog = mongoose.model('Blog', blogSchema);
+        next();
+    });
 
-module.exports = Blog;
+    const Blog = mongoose.model('Blog', blogSchema);
+    module.exports = Blog;

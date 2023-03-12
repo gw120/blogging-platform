@@ -3,13 +3,12 @@
     "",
     "\\frontend",
     "\\frontend\\src",
-    "\\frontend\\src\\components",
     "\\frontend\\src\\components\\layout",
-    "\\frontend\\src\\components\\layout\\Footer",
-    "\\frontend\\src\\components\\layout\\Header",
-    "\\frontend\\src\\components\\layout\\Input",
-    "\\frontend\\src\\components\\pages",
-    "\\frontend\\src\\hooks"
+    "\\frontend\\src\\components\\pages\\auth\\dashboard",
+    "\\server",
+    "\\server\\src",
+    "\\server\\src\\controllers"
   ],
+  "SelectedNode": "\\server\\src\\controllers\\blogController.js",
   "PreviewInSolutionExplorer": false
 }
