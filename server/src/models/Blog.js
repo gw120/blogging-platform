@@ -1,45 +1,54 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+
 const requiredString = {
     type: String,
-    required: true,
+    required: [true, "can't be blank"],
 };
 
-const blogSchema = new mongoose.Schema({
+const specifiedStringLength = (field, minlength, maxlength) => {
+        const obj = {};
+        if (minlength) {
+            obj.minlength = [minlength, `${field} must have min ${minlength} characters`];
+        }
+        if (maxlength) {
+            obj.maxlength = [maxlength, `${field} must have max ${maxlength} characters`];
+        }
+        return obj;
+    };
+
+    const BlogSchema = new mongoose.Schema({
         user: {
             type: mongoose.ObjectId,
             ref: 'User',
         },
         name: {
             ...requiredString,
-            minLength: 4,
-            maxLength: 40,
-          
+            ...specifiedStringLength('name', 4, 40),
         },
         slug: {
             type: String,
             lowercase: true,
             unique: true,
-    },
-            description: {
-                type: String,
-                minLength: 7,
-                maxLength: 80,
+        },
+        description: {
+            type: String,
+            ...specifiedStringLength('description', 7, 60),
         },
     }, { timestamps: true });
 
-    blogSchema.pre('validate', function (next) {
-        if (!this.slug) {
-            this.slugify();
-        }
+        BlogSchema.pre('validate', function (next) {
+            if (!this.slug) {
+                this.slugify();
+            }
 
-        next();
-    });
+            next();
+        });
 
-blogSchema.methods.slugify = function () {
-    this.slug = `${slugify(this.name)}-${(Math.random() * Math.pow(36, 6) | 0).toString(36)}`;
-};
+            BlogSchema.methods.slugify = function () {
+                this.slug = `${slugify(this.name)}-${(Math.random() * Math.pow(36, 6) | 0).toString(36)}`;
+            };
 
+            const Blog = mongoose.model('Blog', BlogSchema);
 
-    const Blog = mongoose.model('Blog', blogSchema);
-    module.exports = Blog;
+            module.exports = Blog;

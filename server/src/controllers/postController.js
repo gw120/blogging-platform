@@ -8,10 +8,8 @@ exports.createPost = async (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.mapped() });
     }
-
     const { title, body } = req.body;
     const { blogId } = req.params;
-
     try {
         const blog = await Blog.findById(blogId);
         if (!blog) {
@@ -24,7 +22,10 @@ exports.createPost = async (req, res, next) => {
         }
 
         const post = new Post({
-            user: req.user.id, blog: blogId, title, body,
+            user: req.user.id,
+            blog: blogId,
+            title,
+            body,
         });
         await post.save();
 
