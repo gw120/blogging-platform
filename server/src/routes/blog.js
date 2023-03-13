@@ -2,12 +2,14 @@ const router = require('express').Router();
 const auth = require('../middleware/auth');
 const blogController = require('../controllers/blogController');
 const blogValidation = require('../validations/blog');
+
 /*
   @route   POST api/blogs
   @desc    Create a blog
   @access  Private
  */
-router.post('/', auth, blogValidation.validateCreateBlog, blogController.createBlog);
+router.post('/', auth, blogValidation.validateBlog, blogController.createBlog);
+
 /*
   @route   GET api/blogs
   @desc    Get auth user blogs
@@ -49,7 +51,6 @@ router.delete('/:blogId', auth, blogController.deleteBlog);
   @desc    Update blog
   @access  Private
  */
-
-router.put('/:blogId', auth, blogValidation.validateUpdateBlog, blogController.updateBlog);
+router.put('/:blogId', auth, blogValidation.validateBlog, blogController.updateBlog);
 
 module.exports = router;
