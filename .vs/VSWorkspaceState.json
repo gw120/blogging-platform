@@ -1,14 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\frontend",
-    "\\frontend\\src",
-    "\\frontend\\src\\components\\layout",
-    "\\frontend\\src\\components\\pages\\auth\\dashboard",
     "\\server",
     "\\server\\src",
-    "\\server\\src\\controllers"
+    "\\server\\src\\validations"
   ],
-  "SelectedNode": "\\server\\src\\controllers\\blogController.js",
+  "SelectedNode": "\\server\\src\\validations\\blog.js",
   "PreviewInSolutionExplorer": false
 }

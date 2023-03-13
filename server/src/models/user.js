@@ -7,31 +7,31 @@ const requiredString = {
     type: String,
     required: true,
 };
-const userSchema = new mongoose.Schema(
-    {
-        name: {
-            ...requiredString,
-            trim: true,
-            minLength: 2,
-            maxLength: 20,
-        },
-        email: {
-            ...requiredString,
-            unique: true,
-            lowercase: true,
-            validate: (value) => {
-                if (!validator.isEmail(value)) {
-                    throw new Error('Invalid Email Address');
-                }
-            },
-        },
-        password: {
-            ...requiredString,
-            minLength: 7,
+
+const userSchema = new mongoose.Schema({
+    name: {
+        ...requiredString,
+        trim: true,
+        minLength: 2,
+        maxLength: 20,
+    },
+    email: {
+        ...requiredString,
+        unique: true,
+        lowercase: true,
+        validate: (value) => {
+            if (!validator.isEmail(value)) {
+                throw new Error('Invalid Email Address');
+            }
         },
     },
-    { timestamps: true },
-);
+    password: {
+        ...requiredString,
+        minLength: 7,
+    },
+},
+    { timestamps: true });
+
 userSchema.pre('save', async function (next) {
     const user = this;
     // Hash the password only if it's modified
@@ -56,7 +56,6 @@ userSchema.methods.generateAuthToken = async function () {
     const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: 3600 });
     return token;
 };
-
 // model method
 userSchema.statics.findByCredentials = async function (email, password) {
     const user = await this.findOne({ email });
@@ -67,9 +66,7 @@ userSchema.statics.findByCredentials = async function (email, password) {
     if (!isPasswordMatch) {
         throw new Error('Invalid login credentials');
     }
-
     return user;
 };
-
 const User = mongoose.model('User', userSchema);
 module.exports = User;
